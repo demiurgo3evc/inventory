@@ -25,7 +25,7 @@ export const createCalculatorSlice: StateCreator<IngredientSlice> = (set) => ({
         }))
     },
     addIngredient: () => { },
-    removeIngredient: (index: number) => { },
+    removeIngredient: () => { },
     getTotal: () => {
         set(() => ({
 

@@ -1,4 +1,4 @@
-import z, { number } from 'zod';
+import z from 'zod';
 
 export const ProductionSchema = z.object({
     id: z.number(),
@@ -16,7 +16,7 @@ export const ProductionSchema = z.object({
 
 export type TDaily = z.infer<typeof ProductionSchema>;
 
-export type TProduction = Omit<TDaily, "wereLeft" | "sold" | "netIncome">
+export type TProduction = Omit<TDaily, "wereLeft" | "sold" | "netIncome"|"id">
 
 export type TIngredient = {
     name: string

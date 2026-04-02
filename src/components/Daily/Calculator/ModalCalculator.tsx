@@ -2,8 +2,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react'
 import { useAppStore } from '../../../store/useAppStore';
 import FormCalculator from './FormCalculator';
-import { object } from 'zod';
-
 export default function ModalCalculator() {
 
     const show = useAppStore((state) => state.modal);

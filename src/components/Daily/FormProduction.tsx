@@ -11,7 +11,7 @@ type FormProductionProps = {
     control: Control<TProduction>
 }
 
-export default function FormProduction({ register, errors, control }: FormProductionProps) {
+export default function FormProduction({ register,  control }: FormProductionProps) {
 
     const handleModal = useAppStore((state) => state.handleModal);
 

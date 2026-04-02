@@ -5,7 +5,6 @@ import { useQuery } from "@tanstack/react-query"
 import { formatDate, formatNumber } from "../utils";
 
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import Book from '../asset/lottie/Book.json'
 
 export default function HistoryView() {
 
