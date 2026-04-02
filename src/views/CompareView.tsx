@@ -1,0 +1,5 @@
+export default function CompareView() {
+  return (
+    <div>CompareView</div>
+  )
+}
