@@ -7,21 +7,23 @@ import { useEffect } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { initValue } from '../constants';
 import { useMutation } from '@tanstack/react-query';
-import { saveDaily } from '../api/daily';
+import { saveDaily } from '../api/services/daily';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/Loading/Loading';
 
 export default function DailyView() {
 
     const addProduction = useAppStore((state) => state.addProduction)
     const navigate = useNavigate()
 
-    const { register, handleSubmit, reset, watch, control, formState: { errors } } = useForm({
+    const { register, handleSubmit, reset, watch, control,getValues, formState: { errors ,isValid} } = useForm<TProduction>({
         defaultValues: {
             ...initValue,
             unitPrice: 2000,
             date: new Date().toLocaleDateString('en-CA')
-        }
+        },
+        mode:'onChange'
     })
 
     useEffect(() => {
@@ -34,7 +36,7 @@ export default function DailyView() {
 
     }, [watch])
 
-    const { mutate } = useMutation({
+    const { mutate,isPending } = useMutation({
         mutationFn: saveDaily,
         onError: (error) => {
             toast.error(error.message)
@@ -56,7 +58,7 @@ export default function DailyView() {
 
             <form onSubmit={handleSubmit(handleDataForm)} className='space-y-4'>
 
-                <FormProduction register={register} errors={errors} control={control} />
+                <FormProduction register={register} errors={errors} control={control} getValues={getValues} />
 
                 <div className=''>
                     <DailySummary />
@@ -66,7 +68,16 @@ export default function DailyView() {
                     <button className=''>
                         <RiDeleteBin6Line className='text-4xl' />
                     </button>
-                    <input className='w-full bg-[#1F2937] font-bold h-[45px] rounded-lg' type="submit" value={"Guardar día"} />
+                    {/* <input className='w-full bg-[#1F2937] font-bold h-[45px] rounded-lg' type="submit" value={"Guardar día"} /> */}
+                    <button
+                        type="submit"
+                        className={`relative disabled:bg-[#ff85592f] ${isPending ? ' bg-[#ff85592f] ' : 'bg-[#FF8559]'} text-[#FFF] flex justify-center items-center font-bold px-6 py-2 rounded-md text-xl w-full cursor-pointer`}
+                        disabled={!isValid && !isPending}
+                    >
+
+                        {isPending ? <Loading /> : "Guardar Día"}
+
+                    </button>
                 </div>
             </form>
         </div>

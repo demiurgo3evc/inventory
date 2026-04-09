@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { findAll } from "../api/daily";
+import { findAll } from "../api/services/daily";
 import Modal from "../components/History/Modal";
 import { useQuery } from "@tanstack/react-query"
 import { formatDate, formatNumber } from "../utils";
@@ -34,7 +34,7 @@ export default function HistoryView() {
 
                     <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center ">
                         <DotLottieReact
-                            src="/Order History.lottie"
+                            src="/OrderHistory.lottie"
                             loop
                             autoplay
                             className='w-80 h-80'
@@ -53,7 +53,7 @@ export default function HistoryView() {
                                 </div>
 
                                 <div>
-                                    <p className='text-green-500'>{formatNumber(item.netIncome)}</p>
+                                    <p className={`${item.netIncome! <0? 'text-red-500': 'text-green-600'}`}>{formatNumber(item.netIncome!)}</p>
                                     <span className='text-xs'>{item.qtySold} vendidas</span>
                                 </div>
 

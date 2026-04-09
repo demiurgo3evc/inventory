@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { FaWpforms } from "react-icons/fa";
-import { MdOutlineCalendarMonth } from "react-icons/md";
-import { BsFileBarGraphFill } from "react-icons/bs";
 import { GiBookmark } from "react-icons/gi";
 
 export default function NavBottom() {
@@ -19,9 +17,22 @@ export default function NavBottom() {
                     <GiBookmark className="text-4xl" />
                     <span className="text-white">Historial</span>
                 </NavLink>
+                {/* <NavLink to="/history">
+                    {({ isActive }) => (
+                        <div className={`flex flex-col items-center justify-center gap-2 text-xl ${isActive ? 'text-[#FF8559]' : ''}`}>
+
+                            {isActive ? <GiBookmarklet className={`text-4xl text-white`}/> : <GiBookmark className={`text-4xl ${isActive ? 'text-[#FF8559]' : 'text-white'}`} />}
+
+                            <span className={isActive ? 'text-[#FF8559]' : 'text-white'}>
+                                Historial
+                            </span>
+
+                        </div>
+                    )}
+                </NavLink> */}
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-2">
+            {/* <div className="flex flex-col items-center justify-center gap-2">
 
                 <NavLink to={"/monthly"} className={({ isActive }) => `${isActive ? 'text-[#FF8559] border-b border-b-[#FF8559] group' : ''} flex flex-col items-center justify-center gap-2 text-xl`}>
                     <MdOutlineCalendarMonth className="text-4xl" />
@@ -35,7 +46,7 @@ export default function NavBottom() {
                     <BsFileBarGraphFill className="text-4xl" />
                     <span className="text-white">Compare</span>
                 </NavLink>
-            </div>
+            </div> */}
 
         </nav>
     )

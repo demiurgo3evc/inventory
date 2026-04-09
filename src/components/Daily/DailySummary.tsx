@@ -8,16 +8,16 @@ export default function DailySummary() {
     const dailyFee = useAppStore((state) => state.production.dailyFee)
 
     const wereLeft = useAppStore((state) =>
-        (+state.production.qtyMade) - (+state.production.qtySold)
+        (+state.production.qtyMade!) - (+state.production.qtySold!)
     )
 
     const sold = useAppStore((state) =>
-        (state.production.qtySold) * (state.production.unitPrice)
+        (state.production.qtySold!) * (state.production.unitPrice!)
     )
 
     const netIncome = useAppStore((state) => {
-        const s = (state.production.qtySold) * (state.production.unitPrice)
-        return s - (state.production.ingredientCost) - (state.production.dailyFee)
+        const s = (state.production.qtySold!) * (state.production.unitPrice!)
+        return s - (state.production.ingredientCost!) - (state.production.dailyFee!)
     })
 
     return (
@@ -41,7 +41,7 @@ export default function DailySummary() {
 
                 <div className='bg-[#101720] flex flex-col gap-4 w-full px-2 py-2  rounded-lg'>
                     <h3 className='text-lg text-[#FF8559]'>Ganancia Neta</h3>
-                    <p className='text-4xl text-green-600'>{formatNumber(netIncome)}</p>
+                    <p className={`text-4xl ${netIncome<0? 'text-red-500': 'text-green-600'} `}>{formatNumber(netIncome)}</p>
                 </div>
 
             </div>
@@ -58,15 +58,15 @@ export default function DailySummary() {
                     </li>
                     <li className="flex justify-between ">
                         <p>- Ingredientes</p>
-                        <p className="text-red-500">{formatNumber(ingredientCost)}</p>
+                        <p className="text-red-500">{formatNumber(ingredientCost!)}</p>
                     </li>
                     <li className="flex justify-between ">
                         <p>- Cuota</p>
-                        <p className="text-red-500">{formatNumber(dailyFee)}</p>
+                        <p className="text-red-500">{formatNumber(dailyFee!)}</p>
                     </li>
                     <li className="flex justify-between ">
                         <h3>Ganancia Neta</h3>
-                        <p className="text-green-500">{formatNumber(netIncome)}</p>
+                        <p className={`${netIncome<0? 'text-red-500': 'text-green-500'} `}>{formatNumber(netIncome)}</p>
                     </li>
                 </ul>
 

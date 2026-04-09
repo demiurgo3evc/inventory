@@ -3,7 +3,7 @@ import { Fragment } from 'react'
 import Summary from './Summary';
 import { useLocation, useNavigate} from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { findById } from '../../api/daily';
+import { findById } from '../../api/services/daily';
 import { formatDate } from '../../utils';
 
 export default function Modal() {

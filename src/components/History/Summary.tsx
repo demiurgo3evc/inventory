@@ -5,7 +5,6 @@ type SummaryProps={
     data:TDaily
 }
 
-
 export default function Summary({data}:SummaryProps) {
     
     return (
@@ -35,25 +34,25 @@ export default function Summary({data}:SummaryProps) {
                 <li>
                     <div className='flex justify-between border-b py-1'>
                         <p>Ventas</p>
-                        <p className="font-bold">{formatNumber(data.sold)}</p>
+                        <p className="font-bold">{formatNumber(data.sold!)}</p>
                     </div>
                 </li>
                 <li>
                     <div className='flex justify-between border-b py-1'>
                         <p>- Ingredientes</p>
-                        <p className="text-red-500">{formatNumber(data.ingredientCost)}</p>
+                        <p className="text-red-500">{formatNumber(data.ingredientCost!)}</p>
                     </div>
                 </li>
                 <li>
                     <div className='flex justify-between border-b py-1'>
                         <p>- Cuota</p>
-                        <p className="text-red-500">{formatNumber(data.dailyFee)}</p>
+                        <p className="text-red-500">{formatNumber(data.dailyFee!)}</p>
                     </div>
                 </li>
 
                 <div className='flex justify-between py-1'>
                     <p>Ganancia neta</p>
-                    <p className="text-green-500">{formatNumber(data.netIncome)}</p>
+                    <p className={`${data.netIncome! <0? 'text-red-500': 'text-green-600'}`}>{formatNumber(data.netIncome!)}</p>
                 </div>
 
             </ul>

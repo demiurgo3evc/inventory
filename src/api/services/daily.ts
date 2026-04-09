@@ -1,5 +1,5 @@
-import api from './axios'
-import type { TDaily, TProduction } from '../types'
+import api from '../axios'
+import type { TDaily, TProduction } from '../../types'
 
 export const saveDaily = async (production: TProduction) => {
     const { data } = await api.post('/daily', production)
