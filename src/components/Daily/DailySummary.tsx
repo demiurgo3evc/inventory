@@ -31,17 +31,17 @@ export default function DailySummary() {
                 <div className='flex justify-between gap-4'>
                     <div className='bg-[#101720] flex flex-col gap-4 w-full px-2 py-2  rounded-lg'>
                         <h3 className='text-lg text-[#FF8559]'>Sobraron</h3>
-                        <p className=' text-4xl text-center'>{wereLeft}</p>
+                        <p className=' text-4xl text-center'>{isNaN(wereLeft) ? 0 : wereLeft}</p>
                     </div>
                     <div className='bg-[#101720] flex flex-col gap-4 w-full px-2 py-2  rounded-lg'>
-                        <h3 className='text-lg text-[#FF8559]'>Vendido</h3>
-                        <p className='text-4xl'> {formatNumber(sold)}</p>
+                        <h3 className='text-lg text-[#FF8559] '>Vendido</h3>
+                        <p className='text-4xl text-center'> {isNaN(sold) ? "$0.00": formatNumber(sold)}</p>
                     </div>
                 </div>
 
                 <div className='bg-[#101720] flex flex-col gap-4 w-full px-2 py-2  rounded-lg'>
                     <h3 className='text-lg text-[#FF8559]'>Ganancia Neta</h3>
-                    <p className={`text-4xl ${netIncome<0? 'text-red-500': 'text-green-600'} `}>{formatNumber(netIncome)}</p>
+                    <p className={`text-4xl ${netIncome<0? 'text-red-500': 'text-green-600'} `}>{isNaN(netIncome) ? '$0.00':formatNumber(netIncome)}</p>
                 </div>
 
             </div>
