@@ -6,16 +6,19 @@ import Sildebar from "../components/Sildebar/Sildebar";
 import { useAppStore } from "../store/useAppStore";
 import { useEffect, useState } from "react";
 import { decodeToken } from "../utils/auth";
-
+import Calculator from "../components/Calculator/Calculator";
+import { CiCalculator2 } from "react-icons/ci";
 export default function Dashboard() {
 
     const viewSildebar = useAppStore((state) => state.sildebar);
     const handleSildebar = useAppStore((state) => state.handleSildebar);
-   // const userStore = useAppStore((state) => state.user);
+    const viewCalculator = useAppStore((state) => state.viewCalculator)
+    // const userStore = useAppStore((state) => state.user);
     const [businessName, setBusinessName] = useState("");
 
+
     useEffect(() => {
-        const {businessName} = decodeToken()
+        const { businessName } = decodeToken()
         setBusinessName(businessName)
     }, [])
 
@@ -24,14 +27,24 @@ export default function Dashboard() {
 
             <div className={`h-screen ${viewSildebar && 'overflow-hidden'}`}>
 
-                <header className="p-4">
+                <header className="p-4  flex justify-between">
+                    <div>
 
-                    <div className="flex items-center gap-2  ">
-                        <button onClick={handleSildebar}><FaCircleUser className="text-3xl" /></button>
-                        <h1 className="text-[#E5E7EB] text-2xl font-bold"> {businessName}</h1>
+                        <div className="flex items-center gap-2  ">
+                            <button onClick={handleSildebar}><FaCircleUser className="text-3xl" /></button>
+                            <h1 className="text-[#E5E7EB] text-2xl font-bold"> {businessName}</h1>
+                        </div>
+
+                        <h3 className="text-[#FF8559] ml-10">Contabilidad del negocio</h3>
                     </div>
 
-                    <h3 className="text-[#FF8559] ml-10">Contabilidad del negocio</h3>
+                    {/* text-[#1F2937] */}
+
+                    <button className=" " type="button" onClick={viewCalculator}>
+                        <CiCalculator2 className="text-5xl text-[#FF8559] fill-gray-300 mr-4 p-1 rounded-md  bg-[#ff855916]" />
+                    </button>
+
+
 
                 </header>
 
@@ -47,6 +60,8 @@ export default function Dashboard() {
 
             </div>
 
+            <Calculator />
+
             <ToastContainer
                 pauseOnHover={false}
                 pauseOnFocusLoss={false}
@@ -59,5 +74,4 @@ export default function Dashboard() {
             }
         </>
     )
-
 }
